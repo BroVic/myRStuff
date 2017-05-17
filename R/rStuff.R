@@ -1,3 +1,5 @@
+globalVariables("help")
+
 #' Prepare a practice environment
 #' 
 #' Reviews a package by opening its documentation, navigating to the relevant
@@ -9,7 +11,8 @@
 #' a change of the working directory (where applicable) and the opening of
 #' the documentation for that package.
 #' @export
-review.package <- function(package = character()) {
+review.package <- function(package = character())
+{
   wd <- paste0("C:/Users/Admn/Documents/5-Personal/Study/R/practice/",
                as.character(package))
   
