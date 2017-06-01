@@ -18,3 +18,4 @@ the documentation for that package.
 Reviews a package by opening its documentation, navigating to the relevant
 working directory (if necessary)
 }
+
