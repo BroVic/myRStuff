@@ -15,13 +15,17 @@ review.package <- function(package = character())
 {
   wd <- paste0("C:/Users/Admn/Documents/5-Personal/Study/R/r-sandbox/",
                package)
+  if (!package %in% installed.packages()[1])
+    stop(paste0("Package ", sQuote(package),
+                " does not exist. Run 'install.packages(", dQuote(package),
+                ") to try and get it.\n"))
   if (!identical(getwd(), wd)) {
     if (!is.null(wd)) {
       setwd(wd)
       message(paste0("\nWorking directory changed to ",
-                     sQuote(getwd()), "\n."))
+                     sQuote(getwd()), ".\n"))
     } else stop("\nDirectory not found.")
-  } else message(paste0("\nAlready in ", sQuote(wd), "\n."))
+  } else message(paste0("\nAlready in ", sQuote(wd), ".\n"))
   help(package = package)
   message(paste("Documentation for the", sQuote(package),
                 "package is now open.")) 
