@@ -13,15 +13,16 @@ globalVariables("help")
 #' @export
 review.package <- function(package = character())
 {
-  wd <- paste0("C:/Users/Admn/Documents/5-Personal/Study/R/practice/",
-               as.character(package))
-  
-  help(package = as.character(package))
+  wd <- paste0("C:/Users/Admn/Documents/5-Personal/Study/R/r-sandbox/",
+               package)
+  if (!identical(getwd(), wd)) {
+    if (!is.null(wd)) {
+      setwd(wd)
+      message(paste0("\nWorking directory changed to ",
+                     sQuote(getwd()), "\n."))
+    } else stop("\nDirectory not found.")
+  } else message(paste0("\nAlready in ", sQuote(wd), "\n."))
+  help(package = package)
   message(paste("Documentation for the", sQuote(package),
-                "package is now open."))
-  
-  if (getwd() != wd) {
-    setwd(wd)
-    message(paste0("Working directory changed to ", sQuote(getwd()), "."))     
-  } else message(paste0("Already in ", sQuote(wd), "."))
+                "package is now open.")) 
 }
