@@ -11,13 +11,18 @@ globalVariables("help")
 #' a change of the working directory (where applicable) and the opening of
 #' the documentation for that package.
 #' @export
-review.package <- function(package = character())
+review.package <- function(pkg = character())
 {
+  msg <- "Argument 'pkg' is not "
+  if (!is.atomic(pkg))
+    stop(paste0(msg, " atomic.\n"))
+  if (!is.character(pkg))
+    stop(paste0(msg, " a character vector.\n"))
   wd <- paste0("C:/Users/Admn/Documents/5-Personal/Study/R/r-sandbox/",
-               package)
-  if (!package %in% installed.packages()[1])
-    stop(paste0("Package ", sQuote(package),
-                " does not exist. Run 'install.packages(", dQuote(package),
+               pkg)
+  if (!pkg %in% installed.packages()[1])
+    stop(paste0("Package ", sQuote(pkg),
+                " does not exist. Run 'install.packages(", dQuote(pkg),
                 ") to try and get it.\n"))
   if (!identical(getwd(), wd)) {
     if (!is.null(wd)) {
@@ -26,7 +31,7 @@ review.package <- function(package = character())
                      sQuote(getwd()), ".\n"))
     } else stop("\nDirectory not found.")
   } else message(paste0("\nAlready in ", sQuote(wd), ".\n"))
-  help(package = package)
-  message(paste("Documentation for the", sQuote(package),
+  help(package = pkg)
+  message(paste("Documentation for the", sQuote(pkg),
                 "package is now open.")) 
 }
