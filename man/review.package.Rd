@@ -4,7 +4,7 @@
 \alias{review.package}
 \title{Prepare a practice environment}
 \usage{
-review.package(package = character())
+review.package(pkg = character())
 }
 \arguments{
 \item{package}{name of the package}
@@ -18,4 +18,3 @@ the documentation for that package.
 Reviews a package by opening its documentation, navigating to the relevant
 working directory (if necessary)
 }
-

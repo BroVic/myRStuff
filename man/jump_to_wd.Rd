@@ -4,10 +4,10 @@
 \alias{jump_to_wd}
 \title{Change to a particular working directory}
 \usage{
-jump_to_wd(x, home = NULL)
+jump_to_wd(dir, home = NULL)
 }
 \arguments{
-\item{x}{The destination directory}
+\item{dir}{The destination directory}
 
 \item{home}{The user's home directory; the starting point for the search}
 }
@@ -19,4 +19,3 @@ This function works best for the user who is vaguely familiar
     familiar with the directory tree structure of the work station, as
     there is a need to supply the exact name of the destination folder.
 }
-

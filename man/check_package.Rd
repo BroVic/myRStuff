@@ -20,4 +20,3 @@ The function returns \code{TRUE} if the package is installed;
 ## Not run
 check_package("base")  # TRUE
 }
-

@@ -20,10 +20,10 @@ review.package <- function(pkg = character())
     stop(paste0(msg, " a character vector.\n"))
   wd <- paste0("C:/Users/Admn/Documents/5-Personal/Study/R/r-sandbox/",
                pkg)
-  if (!pkg %in% installed.packages()[1])
+  if (!pkg %in% installed.packages()[, 1])
     stop(paste0("Package ", sQuote(pkg),
                 " does not exist. Run 'install.packages(", dQuote(pkg),
-                ") to try and get it.\n"))
+                ")' to try and get it.\n"))
   if (!identical(getwd(), wd)) {
     if (!is.null(wd)) {
       setwd(wd)
