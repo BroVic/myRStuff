@@ -6,12 +6,8 @@
 #'
 #' @return The function returns \code{TRUE} if the package is installed;
 #'     \code{FALSE} if it is not.
-#' @examples
-#' ## Not run
-#' check_package("base")  # TRUE
-#' @importFrom utils installed.packages
 #' @export
 check_package <- function(pkg)
 {
-  return(pkg %in% rownames(installed.packages()))
+  return(pkg %in% rownames(utils::installed.packages()))
 }

@@ -3,6 +3,7 @@
 #' Save old R packages upon a new R installation.
 #' 
 #' @references https://www.datascienceriot.com/how-to-upgrade-r-without-losing-your-packages/kris/
+#' @importFrom utils installed.packages install.packages menu update.packages
 #' @export
 old_pkg <- function()
 {
@@ -21,6 +22,3 @@ old_pkg <- function()
   	 update.packages(),
          cat("Packages not updated\n"))
 }
-
-
-# Source: 

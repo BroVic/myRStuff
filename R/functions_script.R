@@ -1,12 +1,6 @@
 #' Reorientate labels on the y-axis and insert gridlines
-#'
-#' @return Minor customizations to plots. Adds horizontal gridlines and reorients y-axis tick-labels for improved legibility.
-#'
-#' @examples 
-#' ## Do not run
-#' plot(rnorm(10, 5, 2), axes = F)
-#' custom_plot()
 #' 
+#' @importFrom graphics axis grid
 #' @export
 custom_plot <- function()
 {

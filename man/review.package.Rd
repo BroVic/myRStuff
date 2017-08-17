@@ -7,7 +7,7 @@
 review.package(pkg = character())
 }
 \arguments{
-\item{package}{name of the package}
+\item{pkg}{character: name of the package}
 }
 \value{
 There is no return value. The side effects of the function call
@@ -16,5 +16,6 @@ the documentation for that package.
 }
 \description{
 Reviews a package by opening its documentation, navigating to the relevant
-working directory (if necessary)
+working directory (if necessary).
 }
+

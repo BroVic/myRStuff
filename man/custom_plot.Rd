@@ -6,15 +6,7 @@
 \usage{
 custom_plot()
 }
-\value{
-Minor customizations to plots. Adds horizontal gridlines and reorients y-axis tick-labels for improved legibility.
-}
 \description{
 Reorientate labels on the y-axis and insert gridlines
 }
-\examples{
-## Do not run
-plot(rnorm(10, 5, 2), axes = F)
-custom_plot()
 
-}
