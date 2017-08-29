@@ -19,4 +19,3 @@ This function works best for the user who is vaguely familiar
     familiar with the directory tree structure of the work station, as
     there is a need to supply the exact name of the destination folder.
 }
-

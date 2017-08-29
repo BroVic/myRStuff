@@ -16,4 +16,3 @@ The function returns \code{TRUE} if the package is installed;
 \description{
 \code{check_package} checks whether an R package is installed locally.
 }
-

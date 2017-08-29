@@ -9,4 +9,3 @@ custom_plot()
 \description{
 Reorientate labels on the y-axis and insert gridlines
 }
-

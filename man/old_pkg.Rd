@@ -12,4 +12,3 @@ Save old R packages upon a new R installation.
 \references{
 https://www.datascienceriot.com/how-to-upgrade-r-without-losing-your-packages/kris/
 }
-

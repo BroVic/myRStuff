@@ -12,4 +12,3 @@ goto_sandbox(dir = NULL)
 \description{
 Navigate to personal R sandbox
 }
-
