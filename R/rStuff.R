@@ -20,8 +20,8 @@ review.package <- function(pkg = character())
     stop(paste0(msg, " atomic.\n"))
   if (!is.character(pkg))
     stop(paste0(msg, " a character vector.\n"))
-  wd <- paste0("C:/Users/Admn/Documents/5-Personal/Study/R/r-sandbox/",
-               pkg)
+  wd <- path.expand(file.path(
+      "~", "Documents/5-Personal/Study/R/r-sandbox/programming", pkg))
   if (!pkg %in% utils::installed.packages()[, 1])
     stop(paste0("Package ", sQuote(pkg),
                 " does not exist. Run 'install.packages(", dQuote(pkg),
