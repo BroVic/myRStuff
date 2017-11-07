@@ -7,7 +7,7 @@
 #' @return The function returns \code{TRUE} if the package is installed;
 #'     \code{FALSE} if it is not.
 #' @export
-check_package <- function(pkg)
+check_package <- function(pkg = character())
 {
-  return(pkg %in% rownames(utils::installed.packages()))
+  return(pkg %in% (.packages(all.available = TRUE)))
 }

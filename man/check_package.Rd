@@ -4,7 +4,7 @@
 \alias{check_package}
 \title{Check package installation status}
 \usage{
-check_package(pkg)
+check_package(pkg = character())
 }
 \arguments{
 \item{pkg}{package being checked for.}
