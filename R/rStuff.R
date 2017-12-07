@@ -29,13 +29,13 @@ review.package <- function(pkg = character())
   if (!identical(getwd(), wd)) {
     if (!is.null(wd)) {
       setwd(wd)
-      message(paste0("\nWorking directory changed to ",
+      message(paste0("Working directory changed to ",
                      sQuote(getwd()), ".\n"))
-    } else stop("\nDirectory not found.")
-  } else message(paste0("\nAlready in ", sQuote(wd), ".\n"))
+    } else stop("Directory not found.\n")
+  } else message(paste0("Already in ", sQuote(wd), ".\n"))
   help(package = as.character(pkg))
   message(paste("Documentation for the", sQuote(pkg),
-                "package is now open.")) 
+                "package is now open.\n")) 
 }
 
 #' create_and_edit
@@ -54,5 +54,17 @@ create_and_edit <- function(x = character())
     } else {
         stop("Failed to create the file")
     }
+}
+
+#' cheatsheet
+#' 
+#' Access locally stored cheatsheets
+#' 
+#' @param doc name of cheatsheet to view (or a match)
+#' 
+#' @export
+cheatsheet <- function(doc = NULL) {
+  if (is.null(doc))
+    shell.exec(normalizePath("~/Documents/5-Personal/Study/R/cheatsheets"))
 }
 
