@@ -63,7 +63,8 @@ create_and_edit <- function(x = character())
 #' @param doc name of cheatsheet to view (or a match)
 #' 
 #' @export
-cheatsheet <- function(doc = NULL) {
+cheatsheet <- function(doc = NULL)
+{
   if (is.null(doc))
     shell.exec(normalizePath("~/Documents/5-Personal/Study/R/cheatsheets"))
 }

@@ -1,4 +1,4 @@
-#' old-pkg.R
+#' package-functions.R
 #' 
 #' Save old R packages upon a new R installation.
 #' 
@@ -21,4 +21,28 @@ old_pkg <- function()
   switch(menu(c("Yes", "No"), title = "Do you want to update your packages?"),
   	 update.packages(),
          cat("Packages not updated\n"))
+}
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#' Checks whether a (malformed) package is missing the 'DESCRIPTION' file
+#' @param lib An R library directory
+#'
+#' @export
+which_pkg_missing_description <- function(lib)
+{
+  if (!lib %in% .libPaths())
+    warning(sQuote(lib), " is not a recognised library directory.")
+  pkgs <- list.dirs(lib, recursive = FALSE)
+  if (!length(pkgs))
+    stop(sprintf("There are no packages in '%s'.", lib))
+  desc <- "DESCRIPTION"
+  hasDESC <- sapply(pkgs, function(P) {
+    file.exists(file.path(lib, P, desc))
+  })
+  pkgs[!which(hasDESC)]
 }
