@@ -67,7 +67,7 @@ install_R_my_way <- function() {
     downs <- file.path(path.expand("~"), "Downloads")
     if (!dir.exists(downs))
       downs <- "C:/"
-    message("Download directory for the installer was set to", downs)
+    message("Download directory for the installer was set to ", downs)
   }
 
   updateR(
