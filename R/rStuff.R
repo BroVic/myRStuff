@@ -66,6 +66,6 @@ create_and_edit <- function(x = character())
 cheatsheet <- function(doc = NULL)
 {
   if (is.null(doc))
-    shell.exec(normalizePath("~/Documents/5-Personal/Study/R/cheatsheets"))
+    shell.exec(normalizePath("~/Documents/5-Personal/R/cheatsheets"))
 }
 

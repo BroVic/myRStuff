@@ -2,7 +2,7 @@
 % Please edit documentation in R/package-functions.R
 \name{which_pkg_missing_description}
 \alias{which_pkg_missing_description}
-\title{Checks whether a (malformed) package is missing the 'DESCRIPTION' file}
+\title{Find a corrupted package}
 \usage{
 which_pkg_missing_description(lib)
 }

@@ -3,6 +3,7 @@
 #' Save old R packages upon a new R installation.
 #' 
 #' @references https://www.datascienceriot.com/how-to-upgrade-r-without-losing-your-packages/kris/
+#' 
 #' @importFrom utils installed.packages install.packages menu update.packages
 #' @export
 old_pkg <- function()
@@ -11,8 +12,7 @@ old_pkg <- function()
   installedPkgs <- as.vector(tmp[is.na(tmp[ , "Priority"]), 1])
   
   save(installedPkgs, file = "../data/old-packages.rda")
-  
-  load("../data/old-packages.rda")
+
   tmp <- installed.packages()
   newly_installed <- as.vector(tmp[is.na(tmp[ , "Priority"]), 1])
   missing <- setdiff(installedPkgs, newly_installed)
@@ -22,13 +22,16 @@ old_pkg <- function()
   	 update.packages(),
          cat("Packages not updated\n"))
 }
-#'
-#'
-#'
-#'
-#'
-#'
-#'
+
+
+
+
+
+
+
+
+#' Find a corrupted package
+#' 
 #' Checks whether a (malformed) package is missing the 'DESCRIPTION' file
 #' @param lib An R library directory
 #'
@@ -45,4 +48,42 @@ which_pkg_missing_description <- function(lib)
     file.exists(file.path(lib, P, desc))
   })
   pkgs[!which(hasDESC)]
+}
+
+
+
+
+
+#' Customised Upgrading of R Installation
+#' 
+#' Installing R using customised settings of
+#' \code{\link[installr]{updateR}}
+#' 
+#' @importFrom installr updateR
+#' 
+#' @export
+install_R_my_way <- function() {
+  if (identical(.Platform$OS.type, 'windows')) {
+    downs <- file.path("~", "Downloads")
+    if (!dir.exists(downs))
+      downs <- "C:/"
+    message("Download directory for the installer was set to", downs)
+  }
+
+  updateR(
+    browse_news = FALSE,
+    install_R = TRUE,
+    copy_packages = TRUE,
+    copy_Rprofile.site = TRUE,
+    keep_old_packages = TRUE,
+    GUI = TRUE,
+    to_checkMD5sums = TRUE,
+    update_packages = FALSE,
+    start_new_R = FALSE,
+    quit_R = FALSE,
+    print_R_versions = FALSE,
+    keep_install_file = TRUE,
+    download_dir = downs,
+    silent = TRUE
+  )
 }
