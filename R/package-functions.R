@@ -64,7 +64,7 @@ which_pkg_missing_description <- function(lib)
 #' @export
 install_R_my_way <- function() {
   if (identical(.Platform$OS.type, 'windows')) {
-    downs <- file.path("~", "Downloads")
+    downs <- file.path(path.expand("~"), "Downloads")
     if (!dir.exists(downs))
       downs <- "C:/"
     message("Download directory for the installer was set to", downs)
