@@ -10,3 +10,8 @@ install_R_my_way()
 Installing R using customised settings of
 \code{\link[installr]{updateR}}
 }
+\details{
+The R installation will be carried out without a recourse to 
+any kind of interaction, with the exception of a possible prompt from
+\emph{Windows Smartscreen}.
+}
