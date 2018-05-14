@@ -81,7 +81,7 @@ install_R_my_way <- function() {
         stop("You may need to check your permissions.")
       }
     }
-    message("The installer was downloaded to ", dwns)
+    message("The installer was downloaded to ", dwn)
     stop("Attempted to run on an unsupported platform")
   }
   

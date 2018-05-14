@@ -5,7 +5,7 @@ Author: person("Victor", "Ordu", email = "victorordu@outlook.com",
     role = c("aut", "cre"))
 Description: It helps.
 Depends:
-    R (>= 3.3.1)
+    R (>= 3.3)
 Imports:
     graphics (>= 3.3.3),
     installr,
