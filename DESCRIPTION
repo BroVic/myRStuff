@@ -8,9 +8,9 @@ Depends:
     R (>= 3.3)
 Imports:
     graphics (>= 3.3.3),
-    installr,
+    installr (>= 0.20.0),
     utils (>= 3.3.3)
-License: GPL
+License: GPL-3 + file LICENSE
 Maintainer: Victor Ordu <victorordu@outlook.com>
 Encoding: UTF-8
 LazyData: true

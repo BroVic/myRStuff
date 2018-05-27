@@ -13,29 +13,46 @@ globalVariables("help")
 #' 
 #' @importFrom utils help
 #' @export
-review.package <- function(pkg = character())
+review.package <- function(pkg)
 {
-  msg <- "Argument 'pkg' is not "
-  if (!is.atomic(pkg))
-    stop(paste0(msg, " atomic.\n"))
-  if (!is.character(pkg))
-    stop(paste0(msg, " a character vector.\n"))
-  wd <- path.expand(file.path(
-      "~", "Documents/5-Personal/Study/R/r-sandbox/programming", pkg))
-  if (!pkg %in% utils::installed.packages()[, 1])
-    stop(paste0("Package ", sQuote(pkg),
-                " does not exist. Run 'install.packages(", dQuote(pkg),
-                ")' to try and get it.\n"))
-  if (!identical(getwd(), wd)) {
-    if (!is.null(wd)) {
-      setwd(wd)
-      message(paste0("Working directory changed to ",
-                     sQuote(getwd()), ".\n"))
-    } else stop("Directory not found.\n")
-  } else message(paste0("Already in ", sQuote(wd), ".\n"))
-  help(package = as.character(pkg))
-  message(paste("Documentation for the", sQuote(pkg),
-                "package is now open.\n")) 
+  stopifnot(is.vector(pkg))
+  stopifnot(is.character(pkg))
+  mycomp <- Sys.info()
+  mycomp <- mycomp["nodename"]
+  root <- "~/Documents/5-Personal/Study/R/r-sandbox/"
+  if (!identical(mycomp, "SA-DG")) {
+    stop("The function is customised for exclusively for", sQuote(mycomp))
+  } else {
+    dirs <- list.dirs(root,
+                      recursive = TRUE,
+                      full.names = FALSE)
+    if (!any(endsWith(dirs, pkg))) {
+      stop("There is no material on the package", sQuote(pkg))
+    } else {
+      p <- grep(pattern = pkg, x = dirs, value = TRUE)
+      wd <- file.path(root, p)
+    }
+    if (!pkg %in% .packages(all.available = TRUE))
+      stop(
+        paste0(
+          "Package ",
+          sQuote(pkg),
+          " does not exist in ",
+          .libPaths()[1])
+      )
+    if (!identical(getwd(), wd)) {
+      if (dir.exists(wd)) {
+        setwd(wd)
+        message(paste0("Working directory changed to ",
+                       sQuote(getwd()), ".\n"))
+      } else
+        stop("Directory not found.\n")
+    } else
+      message(paste0("Already in ", sQuote(wd), ".\n"))
+    help(package = as.character(pkg))
+    message(paste("Documentation for the", sQuote(pkg),
+                  "package is now open.\n"))
+  }
 }
 
 #' create_and_edit

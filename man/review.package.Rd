@@ -4,7 +4,7 @@
 \alias{review.package}
 \title{Prepare a practice environment}
 \usage{
-review.package(pkg = character())
+review.package(pkg)
 }
 \arguments{
 \item{pkg}{character: name of the package}
