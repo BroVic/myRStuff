@@ -65,7 +65,7 @@ create_and_edit <- function(x = character())
 #' 
 #' 
 #' @param doc A character string of the filename, in part or whole. Regular
-#' expressions are supported.
+#' expressions and case insensitivity are supported.
 #' 
 #' @export
 cheatsheet <- function(doc = NULL)
@@ -80,10 +80,9 @@ cheatsheet <- function(doc = NULL)
   all.files <-
     list.files(
       path,
-      recursive = TRUE,
       ignore.case = TRUE
     )
-  cht <- grep(doc, all.files, value = TRUE)
+  cht <- grep(doc, all.files, value = TRUE, ignore.case = TRUE)
   if (identical(cht, character(0)))
     warning('No file matching ', sQuote(doc), ' was found')
   else
