@@ -2,13 +2,14 @@
 % Please edit documentation in R/rStuff.R
 \name{cheatsheet}
 \alias{cheatsheet}
-\title{cheatsheet}
+\title{Access/Open locally stored R cheatsheets}
 \usage{
 cheatsheet(doc = NULL)
 }
 \arguments{
-\item{doc}{name of cheatsheet to view (or a match)}
+\item{doc}{A character string of the filename, in part or whole. Regular
+expressions are supported.}
 }
 \description{
-Access locally stored cheatsheets
+Access/Open locally stored R cheatsheets
 }

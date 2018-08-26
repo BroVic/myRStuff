@@ -56,16 +56,37 @@ create_and_edit <- function(x = character())
     }
 }
 
-#' cheatsheet
+
+
+
+
+#' Access/Open locally stored R cheatsheets
 #' 
-#' Access locally stored cheatsheets
 #' 
-#' @param doc name of cheatsheet to view (or a match)
+#' 
+#' @param doc A character string of the filename, in part or whole. Regular
+#' expressions are supported.
 #' 
 #' @export
 cheatsheet <- function(doc = NULL)
 {
-  if (is.null(doc))
-    shell.exec(normalizePath("~/Documents/5-Personal/R/cheatsheets"))
+  path <- "~/Documents/5-Personal/R/cheatsheets"
+  if (is.null(doc)) {
+    shell.exec(normalizePath(path))
+    return(NULL)
+  }
+  stopifnot(is.character(doc))
+  doc <- doc[1L]
+  all.files <-
+    list.files(
+      path,
+      recursive = TRUE,
+      ignore.case = TRUE
+    )
+  cht <- grep(doc, all.files, value = TRUE)
+  if (identical(cht, character(0)))
+    warning('No file matching ', sQuote(doc), ' was found')
+  else
+    shell.exec(path.expand(file.path(path, cht)))
 }
 
