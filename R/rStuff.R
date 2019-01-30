@@ -62,30 +62,30 @@ create_and_edit <- function(x = character())
 
 #' Access/Open locally stored R cheatsheets
 #' 
-#' 
-#' 
 #' @param doc A character string of the filename, in part or whole. Regular
 #' expressions and case insensitivity are supported.
 #' 
 #' @export
-cheatsheet <- function(doc = NULL)
+cheatsheet <- function(doc = NA_character_)
 {
-  path <- "~/Documents/5-Personal/R/cheatsheets"
-  if (is.null(doc)) {
+  stopifnot(is.character(doc))
+  path <- "~/Documents/5-Personal/Computing/R/cheatsheets/"
+  if (is.na(doc)) {
     shell.exec(normalizePath(path))
     return(NULL)
   }
-  stopifnot(is.character(doc))
+  
+  all.files <- list.files(path, ignore.case = TRUE)
   doc <- doc[1L]
-  all.files <-
-    list.files(
-      path,
-      ignore.case = TRUE
-    )
   cht <- grep(doc, all.files, value = TRUE, ignore.case = TRUE)
-  if (identical(cht, character(0)))
+  
+  if (identical(cht, character(0))) {
     warning('No file matching ', sQuote(doc), ' was found')
-  else
-    shell.exec(path.expand(file.path(path, cht)))
+  } else {
+    invisible(
+      lapply(cht, function(x) {
+        shell.exec(path.expand(file.path(path, x)))
+      })
+    )
+  }
 }
-

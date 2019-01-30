@@ -4,11 +4,11 @@
 \alias{cheatsheet}
 \title{Access/Open locally stored R cheatsheets}
 \usage{
-cheatsheet(doc = NULL)
+cheatsheet(doc = NA_character_)
 }
 \arguments{
 \item{doc}{A character string of the filename, in part or whole. Regular
-expressions are supported.}
+expressions and case insensitivity are supported.}
 }
 \description{
 Access/Open locally stored R cheatsheets
