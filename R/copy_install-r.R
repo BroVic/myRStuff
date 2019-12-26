@@ -4,17 +4,14 @@
 #'
 #' A customised update of an existing R installation, without a fuss. This
 #' function is a wrapper for \code{\link[installr]{updateR}}
-#' 
-#' @importFrom installr check.for.updates.R
-#' @importFrom installr updateR
-#' 
+#'
 #' @details The R installation will be carried out with little or no
 #' interaction from the user, with the exception of a possible prompt from
 #' \emph{Windows Smartscreen}. This functionality is for Windows machines
 #' - the function carries out a platform check internally.
 #'
 #' @export
-easy_updateR <- function() {
+R_easy_update <- function() {
   if (!identical(.Platform$OS.type, tolower(win32 <- "Windows")))
     stop("Function runs only on ", win32)
   
@@ -30,8 +27,9 @@ easy_updateR <- function() {
   
   updated <- FALSE
   try({
-    if (!check.for.updates.R(notify_user = FALSE, GUI = FALSE)) 
-      cat("Nothing to do\n")
+    hasLatestVersion <-
+      !installr::check.for.updates.R(notify_user = FALSE, GUI = FALSE)
+    if (hasLatestVersion) cat("Nothing to do\n")
     else updated <-
         installr::updateR(
           browse_news = FALSE,

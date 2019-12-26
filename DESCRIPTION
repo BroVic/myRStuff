@@ -1,6 +1,6 @@
 Package: myRstuff
-Title: Convenience functions and data for personal use
-Version: 0.0.2
+Title: Convenience functions and data
+Version: 0.1.0
 Author: person("Victor", "Ordu", email = "victorordu@outlook.com",
     role = c("aut", "cre"))
 Description: It helps.
@@ -8,7 +8,7 @@ Depends:
     R (>= 3.3)
 Imports:
     graphics (>= 3.3.3),
-    installr,
+    installr (>= 0.21.0),
     utils (>= 3.3.3)
 License: GPL
 Maintainer: Victor Ordu <victorordu@outlook.com>
