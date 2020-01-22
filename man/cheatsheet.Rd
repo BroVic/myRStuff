@@ -13,3 +13,6 @@ expressions and case insensitivity are supported.}
 \description{
 Access/Open locally stored R cheatsheets
 }
+\details{
+Extraneous whitespace is trimmed from both ends of the argument.
+}

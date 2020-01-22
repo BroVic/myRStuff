@@ -1,5 +1,9 @@
 #' Access/Open locally stored R cheatsheets
 #' 
+#' @details Extraneous whitespace is trimmed from both ends of the argument.
+#' 
+#' @importFrom stringi stri_trim_both
+#' 
 #' @param doc A character string of the filename, in part or whole. Regular
 #' expressions and case insensitivity are supported.
 #' 
@@ -7,7 +11,7 @@
 cheatsheet <- function(doc = NA_character_)
 {
   stopifnot(is.character(doc))
-  doc <- doc[1L]
+  doc <- stri_trim_both(doc[1L])
   path <- "~/Documents/5-Personal/Computing/dev/R/cheatsheets/"
   if (is.na(doc)) {
     shell.exec(normalizePath(path))
