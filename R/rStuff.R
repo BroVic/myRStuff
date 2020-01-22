@@ -22,11 +22,11 @@ review.package <- function(pkg = character())
   if (!is.character(pkg))
     stop(paste0(msg, " a character vector"))
   packdir <-
-    "Documents/5-Personal/Study/datascience/R/r-sandbox/pkgs/"
+    "~/Documents/5-Personal/Study/datascience/R/r-sandbox/pkgs/"
   if (!dir.exists(packdir))
     stop(sQuote(packdir),
          " is not the right directory with studied packages")
-  wd <- path.expand(file.path("~", packdir, pkg))
+  wd <- path.expand(file.path(packdir, pkg))
   if (!pkg %in% .packages(all.available = TRUE))
     stop(sprintf(
       "Package '%s' does not exist. Run install.packages('%s') to get it",
@@ -36,17 +36,15 @@ review.package <- function(pkg = character())
   if (!identical(getwd(), wd)) {
     if (!is.null(wd)) {
       setwd(wd)
-      message(paste0("Working directory changed to ",
-                     sQuote(getwd())))
+      message("Working directory changed to ", sQuote(getwd()))
     } 
     else
       stop("Directory not found")
   } 
   else
-    message(paste0("Already in ", sQuote(wd)))
+    message("Already in ", sQuote(wd))
   help(package = as.character(pkg))
-  message(paste("Documentation for the", sQuote(pkg),
-                "package is now open."))
+  message("Documentation for the ", sQuote(pkg), " package is now open.")
 }
 
 #' create_and_edit
