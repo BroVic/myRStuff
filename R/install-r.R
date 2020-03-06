@@ -19,9 +19,8 @@ easy_updateR <- function() {
     stop("Function runs only on ", win32)
   
   dwn <- file.path(path.expand("~"), "Downloads")
+  keep_install_file <- TRUE
   if (!dir.exists(dwn)) {
-    keep_install_file <- TRUE
-    
     if (!dir.create(dwn)) {
       dwn <- getwd()
       keep_install_file <- FALSE
