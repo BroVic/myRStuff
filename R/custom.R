@@ -7,13 +7,13 @@
 #' @export
 toggleTheme <- function()
 {
-  if (!isAvailable())
+  if (!rstudioapi::isAvailable())
     stop("Not an RStudio session")
   themes <- c("Tomorrow Night Bright", "Textmate (default)")
-  cur <- getThemeInfo()$editor
+  cur <- rstudioapi::getThemeInfo()$editor
   theme <- if (!identical(cur, themes[2]))
     themes[2]
   else
     themes[1]
-  applyTheme(theme)
+  rstudioapi::applyTheme(theme)
 }
