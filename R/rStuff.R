@@ -46,21 +46,3 @@ review.package <- function(pkg = character())
   help(package = as.character(pkg))
   message("Documentation for the ", sQuote(pkg), " package is now open.")
 }
-
-#' create_and_edit
-#'
-#' Create a brand-new file and immediately open it for editing.
-#'
-#' @param x a character vector of the filename(s)
-#'
-#' @importFrom utils file.edit
-#'
-#' @export
-create_and_edit <- function(x = character())
-{
-  if (file.create(x)) {
-    file.edit(x)
-  } else {
-    stop("Failed to create the file")
-  }
-}
