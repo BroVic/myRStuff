@@ -1,6 +1,7 @@
 Package: myRstuff
 Title: Convenience functions and data
-Version: 0.1.4
+Version: 0.1.4.9000
+Date: 2020-05-02
 Author: person("Victor", "Ordu", email = "victorordu@outlook.com",
     role = c("aut", "cre"))
 Description: It helps.
