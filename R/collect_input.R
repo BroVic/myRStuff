@@ -5,12 +5,9 @@
 #'
 #' @param prompt A message for prompting the user.
 #' @param character.only Whether to strictly process as character. Defaults
-#' to \code{FALSE}
-#'
-#' @details \code{character.only} ensures that if the user provides, say a
-#' number, by default it is explicitly coereced to a numerical value. To
-#' enforce interpretation as a string would require the argument to be
-#' \code{TRUE}
+#' to \code{FALSE}. It ensures that if the user provides a number, it is 
+#' explicitly coerced to a numerical value. To enforce interpretation as a 
+#' string requires it to be \code{TRUE}
 #'
 #' @export
 collect_input <- function(prompt = "Enter: ", character.only = FALSE)

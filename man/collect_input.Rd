@@ -10,15 +10,11 @@ collect_input(prompt = "Enter: ", character.only = FALSE)
 \item{prompt}{A message for prompting the user.}
 
 \item{character.only}{Whether to strictly process as character. Defaults
-to \code{FALSE}}
+to \code{FALSE}. It ensures that if the user provides a number, it is 
+explicitly coerced to a numerical value. To enforce interpretation as a 
+string requires it to be \code{TRUE}}
 }
 \description{
 Collect input from within an active R session, whether during an
 interactive session or while running R in batch mode.
-}
-\details{
-\code{character.only} ensures that if the user provides, say a
-number, by default it is explicitly coereced to a numerical value. To
-enforce interpretation as a string would require the argument to be
-\code{TRUE}
 }
