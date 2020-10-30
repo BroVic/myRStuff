@@ -1,5 +1,3 @@
-globalVariables("help")
-
 #' Prepare a practice environment
 #'
 #' Reviews a package by opening its documentation, navigating to the relevant
@@ -26,13 +24,13 @@ review.package <- function(pkg = character())
   if (!dir.exists(packdir))
     stop(sQuote(packdir),
          " is not the right directory with studied packages")
-  wd <- path.expand(file.path(packdir, pkg))
-  if (!pkg %in% .packages(all.available = TRUE))
-    stop(sprintf(
-      "Package '%s' does not exist. Run install.packages('%s') to get it",
-      pkg,
-      pkg
-    ))
+  pkgPath <- file.path(packdir, pkg)
+  wd <- path.expand(pkgPath)
+  pkgExists <- pkg %in% .packages(all.available = TRUE)
+  if (!pkgExists)
+    stop(sprintf("Package '%s' does not exist. Please install it.", pkg))
+  if (pkgExists && dir.create(pkgPath, showWarnings = FALSE))
+    message("New directory created for package ", sQuote(pkg))
   if (!identical(getwd(), wd)) {
     if (!is.null(wd)) {
       setwd(wd)
@@ -44,5 +42,5 @@ review.package <- function(pkg = character())
   else
     message("Already in ", sQuote(wd))
   help(package = as.character(pkg))
-  message("Documentation for the ", sQuote(pkg), " package is now open.")
+  message("Documentation for ", sQuote(pkg), " is now open.")
 }

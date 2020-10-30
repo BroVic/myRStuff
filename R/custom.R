@@ -3,17 +3,15 @@
 #' @importFrom rstudioapi applyTheme
 #' @importFrom rstudioapi getThemeInfo
 #' @importFrom rstudioapi isAvailable
+#' @importFrom yaml read_yaml
 #' 
 #' @export
 toggleTheme <- function()
 {
-  if (!rstudioapi::isAvailable())
+  if (!isAvailable())
     stop("Not an RStudio session")
-  themes <- c("Tomorrow Night Bright", "Textmate (default)")
-  cur <- rstudioapi::getThemeInfo()$editor
-  theme <- if (!identical(cur, themes[2]))
-    themes[2]
-  else
-    themes[1]
-  rstudioapi::applyTheme(theme)
+  themes <- system.file('yaml', 'themes.yml', package = 'myRstuff')
+  cur <- getThemeInfo()$editor
+  ind <- ifelse(cur == themes[1], 2L, 1L)
+  applyTheme(themes[ind])
 }
