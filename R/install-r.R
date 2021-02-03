@@ -19,7 +19,7 @@ easy_updateR <- function() {
   if (!identical(.Platform$OS.type, tolower(win32 <- "Windows")))
     stop("Function runs only on ", win32)
   
-  dwn <- file.path(path.expand("~"), "Downloads")
+  dwn <- path.expand("~/Downloads")
   keep_install_file <- TRUE
   if (!dir.exists(dwn)) {
     if (!dir.create(dwn)) {
@@ -27,49 +27,50 @@ easy_updateR <- function() {
       keep_install_file <- FALSE
     }
   }
-  else {
+  
+  r.ver.pattern <- "R-[d](\\.[d]){2}"
+  r.installers <- 
+    list.files(dwn, pattern = paste0(r.ver.pattern, "-win\\.exe$"))
+  
+  if (length(r.installers) != 0L) {
+    r.versions <- stringi::stri_extract(r.installers, regex = r.ver.pattern)
+    mostRecent <- sort(as.numeric_version(r.versions), decreasing = TRUE)[1]
     myVer <-
       as.numeric_version(paste0(R.version$major, ".", R.version$minor))
-    r.ver.pat <- "R-[d](\\.[d]){2}"
-    r.install.pat <- paste0(r.ver.pat, "-win\\.exe$")
-    rexecs <- list.files(dwn, pattern = r.install.pat)
-    if (!identical(rexecs, character(0))) {
-      rvers <- stringi::stri_extract(rexecs, regex = r.ver.pat)
-      rvers <- sort(as.numeric_version(rvers), decreasing = TRUE)
+    if (myVer < mostRecent) {
+      shell.exec(file.path(dwn,
+                           list.files(dwn, pattern = paste0(
+                             mostRecent, "-win\\.exe$"
+                           ))))
+      return(TRUE)
     }
   }
   
-  updated <- FALSE
-  
-  if (myVer < rvers[1]) {
-    shell.exec(file.path(dwn, list.files(dwn, pattern = paste0(
-      rvers[1], "-win\\.exe$"
-    ))))
-    updated <- TRUE
-  }
-  else if (!check.for.updates.R(notify_user = FALSE, GUI = FALSE))
+  if (!check.for.updates.R(notify_user = FALSE, GUI = FALSE)) {
     cat("Nothing to do\n")
-  else
-    try({
-      updated <-
-        installr::updateR(
-          browse_news = FALSE,
-          install_R = TRUE,
-          copy_packages = TRUE,
-          copy_Rprofile.site = TRUE,
-          keep_old_packages = TRUE,
-          GUI = TRUE,
-          to_checkMD5sums = TRUE,
-          update_packages = FALSE,
-          start_new_R = FALSE,
-          quit_R = FALSE,
-          print_R_versions = FALSE,
-          keep_install_file = keep_install_file,
-          download_dir = dwn,
-          silent = TRUE
-        )
-    }
-    )
+    return(FALSE)
+  }
+  
+  try({
+    updated <-
+      installr::updateR(
+        browse_news = FALSE,
+        install_R = TRUE,
+        copy_packages = TRUE,
+        copy_Rprofile.site = TRUE,
+        keep_old_packages = TRUE,
+        GUI = TRUE,
+        to_checkMD5sums = TRUE,
+        update_packages = FALSE,
+        start_new_R = FALSE,
+        quit_R = FALSE,
+        print_R_versions = FALSE,
+        keep_install_file = keep_install_file,
+        download_dir = dwn,
+        silent = TRUE
+      )
+  })
+  
   if (updated && keep_install_file)
     message("The installer was saved to ", dwn)
   
