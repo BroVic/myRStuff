@@ -1,7 +1,7 @@
 Package: myRstuff
 Title: Convenience functions and data
-Version: 0.1.7
-Date: 2020-02-03
+Version: 0.1.8
+Date: 2021-10-15
 Author: person("Victor", "Ordu", email = "victorordu@outlook.com",
     role = c("aut", "cre"))
 Description: It helps.
@@ -10,6 +10,7 @@ Depends:
 Imports:
     graphics (>= 3.3.3),
     installr (>= 0.21.0),
+    magrittr (>= 2.0.1),
     rstudioapi (>= 0.10),
     stringi (>= 1.4.3),
     utils (>= 3.3.3),

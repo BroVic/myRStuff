@@ -1,2 +1,3 @@
 themes:
-  [Textmate (Default), Xcode]
+  dark: Tomorrow Night Bright
+  light: Textmate (default)

@@ -1,5 +1,7 @@
+globalVariables(".")
 #' Quick Customization for RStudio Themes
 #' 
+#' @importFrom magrittr %<>%
 #' @importFrom rstudioapi applyTheme
 #' @importFrom rstudioapi getThemeInfo
 #' @importFrom rstudioapi isAvailable
@@ -11,8 +13,10 @@ toggleTheme <- function()
   if (!isAvailable())
     stop("Not an RStudio session")
   themefile <- system.file('yaml', 'themes.yml', package = 'myRstuff')
-  cur <- getThemeInfo()$editor
   themes <- unlist(read_yaml(themefile))
-  ind <- ifelse(cur == themes[1], 2L, 1L)
-  applyTheme(themes[ind])
+  names(themes) %<>% 
+    sub("themes\\.", "", .)
+  cur <- getThemeInfo()$editor
+  choice <- ifelse(cur == themes["light"], "dark", "light")
+  applyTheme(themes[choice])
 }
