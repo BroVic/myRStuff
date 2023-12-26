@@ -7,7 +7,7 @@
 cheatsheet(doc = NA_character_)
 }
 \arguments{
-\item{doc}{A character string of the filename, in part or whole. Regular
+\item{doc}{A character vector of filenames, in part or whole. Regular
 expressions and case insensitivity are supported.}
 }
 \description{

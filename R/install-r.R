@@ -5,6 +5,8 @@
 #' A customised update of an existing R installation, without a fuss. This
 #' function is a wrapper for \code{\link[installr]{updateR}}
 #' 
+#' @param timeout integer; timeout for the download.
+#' 
 #' @importFrom installr check.for.updates.R
 #' @importFrom installr updateR
 #' @importFrom stringi stri_extract
@@ -15,12 +17,22 @@
 #' - the function carries out a platform check internally.
 #'
 #' @export
-easy_updateR <- function() {
+easy_updateR <- function(timeout = getOption("timeout")) {
+  # TODO: CRAN reviewers usually frown upon modifying options
+  # within a function's implementation, so I will likely 
+  # revisit this a little later.
+  if (!is.numeric(timeout))
+    stop("'timeout' must be numeric")
+  
+  op <- options(timeout = as.integer(timeout))
+  on.exit(options(op))
+  
   if (!identical(.Platform$OS.type, tolower(win32 <- "Windows")))
     stop("Function runs only on ", win32)
   
   dwn <- path.expand("~/Downloads")
   keep_install_file <- TRUE
+  
   if (!dir.exists(dwn)) {
     if (!dir.create(dwn)) {
       dwn <- getwd()
@@ -37,6 +49,7 @@ easy_updateR <- function() {
     mostRecent <- sort(as.numeric_version(r.versions), decreasing = TRUE)[1]
     myVer <-
       as.numeric_version(paste0(R.version$major, ".", R.version$minor))
+    
     if (myVer < mostRecent) {
       shell.exec(file.path(dwn,
                            list.files(dwn, pattern = paste0(
@@ -51,12 +64,12 @@ easy_updateR <- function() {
     return(FALSE)
   }
   
-  try({
+  tryCatch({
     updated <-
       installr::updateR(
         browse_news = FALSE,
         install_R = TRUE,
-        copy_packages = TRUE,
+        copy_packages = FALSE,
         copy_Rprofile.site = TRUE,
         keep_old_packages = TRUE,
         GUI = TRUE,
@@ -69,10 +82,16 @@ easy_updateR <- function() {
         download_dir = dwn,
         silent = TRUE
       )
+    
+    if (!updated)
+      stop("R could not be updated")
+    
+  }, error = function(e) {
+    stop(e)
   })
   
   if (updated && keep_install_file)
-    message("The installer was saved to ", dwn)
+    message("The installer was saved to ", sQuote(dwn))
   
-  invisible(updated)
+  updated
 }

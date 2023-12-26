@@ -4,7 +4,10 @@
 \alias{easy_updateR}
 \title{Update R}
 \usage{
-easy_updateR()
+easy_updateR(timeout = getOption("timeout"))
+}
+\arguments{
+\item{timeout}{integer; timeout for the download.}
 }
 \description{
 A customised update of an existing R installation, without a fuss. This
