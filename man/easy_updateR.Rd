@@ -4,10 +4,7 @@
 \alias{easy_updateR}
 \title{Update R}
 \usage{
-easy_updateR(timeout = getOption("timeout"))
-}
-\arguments{
-\item{timeout}{integer; timeout for the download.}
+easy_updateR()
 }
 \description{
 A customised update of an existing R installation, without a fuss. This
@@ -16,6 +13,20 @@ function is a wrapper for \code{\link[installr]{updateR}}
 \details{
 The R installation will be carried out with little or no
 interaction from the user, with the exception of a possible prompt from
-\emph{Windows Smartscreen}. This functionality is for Windows machines
+\emph{Windows Smartscreen}. This functionality is for Windows machines only
 - the function carries out a platform check internally.
+}
+\note{
+In instances where only part of the installer is downloaded due to a timeout,
+one should consider resetting the default timeout (see example)
+}
+\examples{
+\dontrun{
+# To extend the timeout period
+op <- options(timeout = 1200)  # timeout is reset to 20 mins
+easy_updateR()
+options(op)  # reset to original value
+}
+
+
 }

@@ -1,24 +1,24 @@
 Package: myRstuff
 Title: Convenience functions and data
-Version: 0.3.0
-Date: 2023-12-26
+Version: 0.3.0.9000
+Date: 2024-09-13
 Author: person("Victor", "Ordu", email = "victorordu@outlook.com",
     role = c("aut", "cre"))
 Description: Some of my helper functions.
 Depends:
-    R (>= 3.3)
+    R (>= 4.4)
 Imports:
-    graphics (>= 3.3.3),
-    installr (>= 0.21.0),
+    graphics,
+    installr (>= 0.23.4),
     magrittr (>= 2.0.1),
     rstudioapi (>= 0.10),
-    stringi (>= 1.4.3),
-    utils (>= 3.3.3),
+    stringr (>= 1.5.1),
+    utils,
     yaml (>= 2.2.1)
 License: GPL
 Maintainer: Victor Ordu <victorordu@outlook.com>
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Suggests:
     testthat
