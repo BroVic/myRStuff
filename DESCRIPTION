@@ -6,7 +6,7 @@ Author: person("Victor", "Ordu", email = "victorordu@outlook.com",
     role = c("aut", "cre"))
 Description: Some of my helper functions.
 Depends:
-    R (>= 4.4)
+    R (>= 3.3)
 Imports:
     graphics,
     installr (>= 0.23.4),

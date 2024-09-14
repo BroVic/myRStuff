@@ -2,7 +2,6 @@
 #' 
 #' @details Extraneous whitespace is trimmed from both ends of the argument.
 #' 
-#' @importFrom stringi stri_trim_both
 #' 
 #' @param doc A character vector of filenames, in part or whole. Regular
 #' expressions and case insensitivity are supported.
@@ -13,7 +12,7 @@ cheatsheet <- function(doc = NA_character_)
   if (!is.character(doc))
     stop("'doc' is not a character vector")
   
-  doc <- stri_trim_both(doc[1L])
+  doc <- stringr::str_trim(doc[1L])
   maindir <- 
     normalizePath("~/Documents/5-Personal/Computing/dev/R/cheatsheets")
   
