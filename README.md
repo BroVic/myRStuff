@@ -1,5 +1,9 @@
 # myRStuff: A convenience package
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/BroVic/myRstuff/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/BroVic/myRstuff/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 ...just some handy functions I use.
 
 ## Why this package might be useful to someone other than me
