@@ -1,7 +1,6 @@
 Package: myRstuff
 Title: Convenience functions and data
-Version: 0.3.0.9001
-Date: 2024-09-15
+Version: 0.3.0.9002
 Author: person("Victor", "Ordu", email = "victorordu@outlook.com",
     role = c("aut", "cre"))
 Description: Some of my helper functions.
@@ -19,6 +18,6 @@ License: GPL
 Maintainer: Victor Ordu <victorordu@outlook.com>
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 Suggests:
     testthat
